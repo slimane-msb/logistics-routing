@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi-Location Route Optimizer & Pathfinding Visualizer</title>
+    <meta name="description" content="Visualize pathfinding algorithms on real maps with route optimization for multiple locations">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="container">
+        <div id="controls">
+            <button class="btn" id="addLocationBtn">📍 Add Location</button>
+            <select id="algorithmSelect">
+                <option value="dijkstra">Dijkstra's Algorithm</option>
+                <option value="astar">A* Algorithm</option>
+                <option value="bfs">Breadth-First Search</option>
+            </select>
+            <div class="optimization-mode">
+                <span class="toggle-label">Optimize route order:</span>
+                <select id="optimizationSelect">
+                    <option value="none">Manual Order</option>
+                    <option value="greedy">Nearest Neighbor</option>
+                    <option value="2opt">2-Opt Optimization</option>
+                </select>
+            </div>
+            <button class="btn" id="visualizeBtn" disabled>▶️ Visualize Route</button>
+            <button class="btn" id="clearBtn">🔄 Clear Paths</button>
+            <button class="btn" id="resetBtn">🗑️ Reset All</button>
+            <div class="status" id="status">Click "Add Location" to start</div>
+        </div>
+        <div id="map"></div>
+        
+        <div class="legend">
+            <div class="legend-item">
+                <div class="legend-color" style="background: linear-gradient(to right, #00ff00, #ff0000);"></div>
+                <span>Locations (1→N)</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background: rgba(255, 255, 0, 0.6);"></div>
+                <span>Visited</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background: rgba(0, 191, 255, 0.6);"></div>
+                <span>Exploring</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background: #9c27b0;"></div>
+                <span>Final Route</span>
+            </div>
+        </div>
+
+        <div class="locations-panel" id="locationsPanel">
+            <h3>📍 Locations (<span id="locationCount">0</span>)</h3>
+            <div id="locationsList"></div>
+            <div id="routeInfo" class="route-info" style="display: none;"></div>
+        </div>
+
+
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+</body>
+</html>
