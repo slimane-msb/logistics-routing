@@ -148,7 +148,7 @@ select {
 /* Locations Panel */
 .locations-panel {
     position: absolute;
-    top: 80px;
+    top: 70px;
     right: 20px;
     background: rgba(22, 33, 62, 0.95);
     padding: 15px;
