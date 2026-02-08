@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { getDistance } from '../utils/distance';
-import {Point} from '../types'; 
+import {Point} from '../utils/types'; 
 
 describe('getDistance', () => {
     const paris: Point = { lat: 48.8566, lng: 2.3522 };

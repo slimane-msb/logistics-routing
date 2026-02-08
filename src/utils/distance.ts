@@ -1,4 +1,4 @@
-import { Point, Node} from "../types";
+import { Point, Node} from "./types";
 
 // Helper function (from utils.ts)
 function getDistance(point1: Point, point2: Point): number {
