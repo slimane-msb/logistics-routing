@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { getDistance } from '../utils';
+import { getDistance } from '../utils/distance';
 import {Point} from '../types'; 
 
 describe('getDistance', () => {

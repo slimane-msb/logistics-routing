@@ -1,5 +1,5 @@
 import { Node, Graph, PathResult, Point } from "./types";
-import { getDistance } from "./utils";
+import { getDistance } from "./utils/distance";
 
 // Pathfinding Algorithms
 interface QueueItem {
