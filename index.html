@@ -6,29 +6,39 @@
     <title>Multi-Location Route Optimizer & Pathfinding Visualizer</title>
     <meta name="description" content="Visualize pathfinding algorithms on real maps with route optimization for multiple locations">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
     <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 <body>
     <div id="container">
         <div id="controls">
-            <button class="btn" id="addLocationBtn">📍 Add Location</button>
-            <select id="algorithmSelect">
-                <option value="dijkstra">Dijkstra's Algorithm</option>
-                <option value="astar">A* Algorithm</option>
-                <option value="bfs">Breadth-First Search</option>
-            </select>
+            <button class="btn" id="addLocationBtn">📍 Add Locations</button>
+
             <div class="optimization-mode">
-                <span class="toggle-label">Optimize route order:</span>
-                <select id="optimizationSelect">
-                    <option value="none">Manual Order</option>
-                    <option value="greedy">Nearest Neighbor</option>
-                    <option value="2opt">2-Opt Optimization</option>
+                <span class="toggle-label">Shortest Path Algorithm:</span>
+                <select id="algorithmShortestPathSelect">
+                    <option value="astar">A* Algorithm</option>
+                    <option value="dijkstra">Dijkstra's Algorithm</option>
+                    <option value="GBFS">Greedy Best First Search</option>
+                </select>
+            </div>
+
+            <div class="optimization-mode">
+                <span class="toggle-label">TSP Algorithm:</span>
+                <select id="algorithmTSPSelect">
+                    <option value="heldKarp">Held–Karp</option>
+                    <option value="LKH">Lin–Kernighan Heuristic</option>
+                    <option value="nearest2opt">Nearest Neighbor 2opt</option>
+                    <option value="optLinKer">2-opt Lin–Kernighan</option>
+                    <option value="cheapestInsertion">Cheapest Insertion</option>
+                    <option value="metaheuristics">Metaheuristics</option>
                 </select>
             </div>
             <button class="btn" id="visualizeBtn" disabled>▶️ Visualize Route</button>
             <button class="btn" id="clearBtn">🔄 Clear Paths</button>
             <button class="btn" id="resetBtn">🗑️ Reset All</button>
             <div class="status" id="status">Click "Add Location" to start</div>
+            <button class="btn btn-bench" id="showBenchmarkBtn">Show Benchmarks</button>
         </div>
         <div id="map"></div>
         
@@ -57,9 +67,23 @@
             <div id="routeInfo" class="route-info" style="display: none;"></div>
         </div>
 
+        <!-- Benchmark Modal -->
+        <div id="benchmarkModal" class="modal-overlay">
+            <div class="modal-content">
+                <button class="modal-close" id="closeModal">×</button>
+                <div class="benchmark-container">
+                    <h1 class="benchmark-title">TSP Algorithm Benchmark</h1>
+                    <div class="chart-box">
+                        <canvas id="benchmarkChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="assets/js/benchmark.js"></script>
     <script src="assets/js/utils.js"></script>
     <script src="assets/js/algorithms.js"></script>
     <script src="assets/js/map.js"></script>
