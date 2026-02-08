@@ -1,0 +1,37 @@
+{
+    "dataset": {
+      "node_count": 55,
+      "algorithms": [
+        {
+          "name": "twoOpt",
+          "category": "fast",
+          "runtime_seconds": 43,
+          "distance": 106000
+        },
+        {
+          "name": "nearest_neighbor_twoOpt",
+          "category": "fast",
+          "runtime_seconds": 42,
+          "distance": 106000
+        },
+        {
+          "name": "greedy_insertion",
+          "category": "fast",
+          "runtime_seconds": 44,
+          "distance": 114000
+        },
+        {
+          "name": "lin_kernighan_heuristic",
+          "category": "fast, short, >10 nodes",
+          "runtime_seconds": 45,
+          "distance": 105000
+        },
+        {
+          "name": "metaheuristics",
+          "category": "fast",
+          "runtime_seconds": 45,
+          "distance": 355000
+        }
+      ]
+    }
+  }
