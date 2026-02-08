@@ -15,7 +15,7 @@
             <button class="btn" id="addLocationBtn">📍 Add Locations</button>
 
             <div class="optimization-mode">
-                <span class="toggle-label">Shortest Path Algorithm:</span>
+                <span class="toggle-label">Shortest Path:</span>
                 <select id="algorithmShortestPathSelect">
                     <option value="astar">A* Algorithm</option>
                     <option value="dijkstra">Dijkstra's Algorithm</option>
@@ -37,8 +37,7 @@
             <button class="btn" id="visualizeBtn" disabled>▶️ Visualize Route</button>
             <button class="btn" id="clearBtn">🔄 Clear Paths</button>
             <button class="btn" id="resetBtn">🗑️ Reset All</button>
-            <div class="status" id="status">Click "Add Location" to start</div>
-            <button class="btn btn-bench" id="showBenchmarkBtn">Show Benchmarks</button>
+            <button class="btn" id="showBenchmarkBtn">Show Benchmarks</button>
         </div>
         <div id="map"></div>
         
@@ -61,6 +60,7 @@
             </div>
         </div>
 
+        <div class="status" id="status">Click "Add Location" to start</div>
         <div class="locations-panel" id="locationsPanel">
             <h3>📍 Locations (<span id="locationCount">0</span>)</h3>
             <div id="locationsList"></div>
