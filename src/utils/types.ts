@@ -22,7 +22,7 @@ interface Node {
   interface Graph {
     nodes: Record<string, Node>;
     edges: Edge[];
-    adjacency?: Record<string, Edge[]>; 
+    adjacency: Record<string, Edge[]>; 
   }
   
 

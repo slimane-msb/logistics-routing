@@ -29,7 +29,7 @@ import { assert } from 'console';
         distance: e.distance,
     }));
 
-    let adjacency: Record<string, Edge[]> | undefined;
+    let adjacency: Record<string, Edge[]>;
     const adjacencyRaw: Record<string, { to: number; distance: number }[]> = JSON.parse(
         fs.readFileSync(path.resolve(adjacencyFilePath), "utf-8")
     );
