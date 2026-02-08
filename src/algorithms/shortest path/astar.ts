@@ -25,8 +25,8 @@ async function astar(graph: Graph, startNode: Node, endNode: Node): Promise<Path
   
     gScore[startNode.id] = 0;
     fScore[startNode.id] = getDistance(
-      { lat: startNode.lat, lng: startNode.lon },
-      { lat: endNode.lat, lng: endNode.lon }
+      { lat: startNode.lat, lng: startNode.lng },
+      { lat: endNode.lat, lng: endNode.lng }
     );
     openSet.push({ id: startNode.id, fScore: fScore[startNode.id] });
   
@@ -55,8 +55,8 @@ async function astar(graph: Graph, startNode: Node, endNode: Node): Promise<Path
             previous[edge.to] = current.id;
             gScore[edge.to] = tentativeGScore;
             const h = getDistance(
-              { lat: graph.nodes[edge.to].lat, lng: graph.nodes[edge.to].lon },
-              { lat: endNode.lat, lng: endNode.lon }
+              { lat: graph.nodes[edge.to].lat, lng: graph.nodes[edge.to].lng },
+              { lat: endNode.lat, lng: endNode.lng }
             );
             fScore[edge.to] = gScore[edge.to] + h;
             openSet.push({ id: edge.to, fScore: fScore[edge.to] });

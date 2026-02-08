@@ -2,15 +2,15 @@
 
 interface Point {
     lat: number;
-    lng?: number;
-    lon?: number;
-  }
+    lng: number;
+ }
   
   
 interface Node {
     id: string;
     lat: number;
-    lon: number;
+    lng: number;
+    edges?: Edge[];
   }
   
   interface Edge {
@@ -22,6 +22,7 @@ interface Node {
   interface Graph {
     nodes: Record<string, Node>;
     edges: Edge[];
+    adjacency?: Record<string, Edge[]>; // TODO
   }
   
   interface PathResult {
@@ -29,9 +30,6 @@ interface Node {
     visitedOrder: string[];
     distance: number;
   }
-
-// algo 
-
 
 
 // export 

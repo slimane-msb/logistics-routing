@@ -4,9 +4,9 @@ import { Point, Node} from "./types";
 function getDistance(point1: Point, point2: Point): number {
   const R = 6371e3; // Earth's radius in meters
   const lat1 = point1.lat;
-  const lon1 = point1.lng || point1.lon;
+  const lon1 = point1.lng || point1.lng;
   const lat2 = point2.lat;
-  const lon2 = point2.lng || point2.lon;
+  const lon2 = point2.lng || point2.lng;
   
   if (lon1 === undefined || lon2 === undefined) {
     throw new Error('Points must have lng or lon property');
@@ -39,8 +39,8 @@ function findNearestNode(point: Point, nodes: Record<string, Node>): Node | null
 
   Object.values(nodes).forEach(node => {
       const dist = getDistance(
-          { lat: point.lat, lng: point.lng ?? point.lon ?? 0 },
-          { lat: node.lat, lng: node.lon }
+          { lat: point.lat, lng: point.lng ?? point.lng ?? 0 },
+          { lat: node.lat, lng: node.lng }
       );
 
       if (dist < minDist) {
