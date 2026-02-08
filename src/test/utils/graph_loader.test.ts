@@ -43,4 +43,27 @@ describe('Graph loading', () => {
         expect(edge.distance).lessThan(4.4); 
     });
 
+
+    it('neighbors (edges) from 389281 are correct', () => {
+        const neighbors = dublinGraph.adjacency!['389281'];
+        expect(neighbors).toBeDefined();
+        expect(neighbors.length).toBe(5); // total edges
+      
+        // List of expected neighbors
+        const expected = [
+          { to: '26165090', distance: 108.27 },
+          { to: '135109542', distance: 100.24 },
+          { to: '2384200130', distance: 118.19 },
+          { to: '135109542', distance: 100.24 },
+          { to: '2384200130', distance: 118.19 },
+        ];
+      
+        expected.forEach((exp) => {
+          const found = neighbors.some(
+            (n) => n.to === exp.to && Math.abs(n.distance - exp.distance) < 0.01
+          );
+          expect(found).toBe(true);
+        });
+    });
+
 });

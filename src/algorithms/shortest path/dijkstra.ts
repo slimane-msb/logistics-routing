@@ -1,66 +1,71 @@
 import { Graph, Node, PathResult } from "@/utils/types";
 
-// Pathfinding Algorithms
-interface QueueItem {
-    id: string;
-    distance: number;
-  }
+function buildAdjacency(graph: Graph) {
+    const adjacency: Record<string, Edge[]> = {};
+    for (const nodeId in graph.nodes) {
+        adjacency[nodeId] = [];
+    }
+    for (const edge of graph.edges) {
+        adjacency[edge.from].push(edge);
+    }
+    graph.adjacency = adjacency;
+}
 
-/**
- * Dijkstra's Algorithm
- * @param graph - Graph with nodes and edges
- * @param startNode - Starting node
- * @param endNode - End node
- * @returns Path, visited order, and distance
- */
-async function dijkstra(graph: Graph, startNode: Node, endNode: Node): Promise<PathResult> {
-const distances: Record<string, number> = {};
-const previous: Record<string, string> = {};
-const visited = new Set<string>();
-const pq: QueueItem[] = [];
+// Dijkstra shortest path from start to end
+function dijkstra(graph: Graph, start: string, end: string): { distance: number, path: string[] } {
+    if (!graph.adjacency) buildAdjacency(graph);
 
-Object.keys(graph.nodes).forEach(nodeId => {
-    distances[nodeId] = Infinity;
-});
-distances[startNode.id] = 0;
-pq.push({ id: startNode.id, distance: 0 });
+    const distances: Record<string, number> = {};
+    const previous: Record<string, string | null> = {};
+    const visited: Set<string> = new Set();
 
-const visitedOrder: string[] = [];
+    for (const nodeId in graph.nodes) {
+        distances[nodeId] = Infinity;
+        previous[nodeId] = null;
+    }
 
-while (pq.length > 0) {
-    pq.sort((a, b) => a.distance - b.distance);
-    const current = pq.shift();
-    
-    if (!current) break;
+    distances[start] = 0;
 
-    if (visited.has(current.id)) continue;
-    
-    visited.add(current.id);
-    visitedOrder.push(current.id);
+    const queue: Set<string> = new Set(Object.keys(graph.nodes));
 
-    if (current.id === endNode.id) break;
+    while (queue.size > 0) {
+        // Pick node with smallest distance
+        let current: string | null = null;
+        for (const nodeId of queue) {
+        if (current === null || distances[nodeId] < distances[current]) {
+            current = nodeId;
+        }
+        }
 
-    const neighbors = graph.edges.filter(e => e.from == current.id);
-    
-    for (const edge of neighbors) {
-    if (!visited.has(edge.to)) {
-        const newDist = distances[current.id] + edge.distance;
-        
-        if (newDist < distances[edge.to]) {
-        distances[edge.to] = newDist;
-        previous[edge.to] = current.id;
-        pq.push({ id: edge.to, distance: newDist });
+        if (current === null || distances[current] === Infinity) break;
+        if (current === end) break; // Stop early if we reached the target
+
+        queue.delete(current);
+        visited.add(current);
+
+        const neighbors = graph.adjacency![current];
+        for (const edge of neighbors) {
+        const neighbor = edge.to;
+        if (visited.has(neighbor)) continue;
+
+        const alt = distances[current] + edge.distance;
+        if (alt < distances[neighbor]) {
+            distances[neighbor] = alt;
+            previous[neighbor] = current;
+        }
         }
     }
+
+    // Reconstruct path
+    const path: string[] = [];
+    let u: string | null = end;
+    while (u) {
+        path.unshift(u);
+        u = previous[u];
     }
-}
 
-const path: string[] = [];
-let current: string | undefined = endNode.id;
-while (current) {
-    path.unshift(current);
-    current = previous[current];
-}
-
-return { path, visitedOrder, distance: distances[endNode.id] };
+    return {
+        distance: distances[end],
+        path: distances[end] === Infinity ? [] : path
+    };
 }
