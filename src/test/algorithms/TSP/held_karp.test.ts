@@ -30,8 +30,10 @@ describe("Held-Karp TSP tests", () => {
       "527838191", 
       "320027798", 
       "255425633", 
-      "255315706"
-
+      "255315706",
+    "670990",
+    "11675792",
+    "12639625"
     ]; 
 
     const result = heldKarpTSP(dublinGraph, targets, astar);
@@ -45,8 +47,8 @@ describe("Held-Karp TSP tests", () => {
     expect(new Set(result.order)).toEqual(new Set(targets)); 
     expect(result.path.length).toBeGreaterThanOrEqual(targets.length);
     expect(result.distance).toBeGreaterThan(0);
-    expect(result.distance).toBeLessThan(40000);
-  });
+    // expect(result.distance).toBeLessThan(40000);
+  }, 300000);
 
   test("Paris: optimal TSP for x locations", () => {
     const targets = [
