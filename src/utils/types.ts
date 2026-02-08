@@ -25,6 +25,13 @@ interface Node {
     adjacency: Record<string, Edge[]>; 
   }
   
+// TSP
+interface TSPResult {
+  order: string[];
+  path: string[];
+  distance: number;
+}
+
 
 // export 
 
@@ -33,5 +40,6 @@ export{
     type Node,
     type Edge,
     type Graph,
-    type Point
+    type Point,
+    TSPResult
 }
