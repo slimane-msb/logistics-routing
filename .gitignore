@@ -1,0 +1,16 @@
+# Node modules
+node_modules/
+package-lock.json
+
+# TypeScript cache
+*.tsbuildinfo
+
+# IDE / Editor settings
+.vscode/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+*.log

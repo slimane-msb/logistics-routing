@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Route Optimizer</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.css" />
+  <script type="module" crossorigin src="/LogiRoute/assets/index-CdlR_Ryo.js"></script>
+  <link rel="stylesheet" crossorigin href="/LogiRoute/assets/index-Ur0cHuj1.css">
+</head>
+<body>
+
+<div id="sidebar">
+  <div id="sidebar-header">
+    <h1><span class="icon">🗺</span> Route Optimizer</h1>
+    <p class="subtitle">Click the map or add addresses to get started</p>
+  </div>
+
+  <div id="address-list-wrapper">
+    <div id="address-list"></div>
+
+    <div id="add-row">
+      <input id="new-address-input" type="text" placeholder="Type one address and press ↵" />
+      <button id="add-addr-btn" onclick="addAddressFromInput()" title="Add address">+</button>
+    </div>
+  </div>
+
+  <div id="sidebar-actions">
+    <div class="action-row">
+      <button class="btn btn-ghost" onclick="document.getElementById('fileInput').click()">
+        ↑ Import .txt
+      </button>
+      <button class="btn btn-danger" onclick="clearAll()">
+        ✕ Clear
+      </button>
+    </div>
+    <button id="optimize-btn" class="btn btn-primary" onclick="optimizeRoute()">
+      ⚡ Find Best Route
+    </button>
+  </div>
+
+  <div id="status">Click the map or add addresses below.</div>
+</div>
+
+<div id="map"></div>
+
+<!-- ── Floating Route Panel ── -->
+<div id="route-panel" class="hidden">
+  <div id="route-panel-header">
+    <h2>🗺 Optimized Route</h2>
+    <div style="display:flex;align-items:center;gap:8px;">
+      <span id="route-stop-count" class="stop-count">0 stops</span>
+      <button class="panel-close" onclick="closeRoutePanel()" title="Close">×</button>
+    </div>
+  </div>
+  <div id="full-route-section">
+    <button id="full-route-btn" class="btn-maps-full">
+      <span class="gmaps-icon">G</span>
+      Open full route in Google Maps
+    </button>
+  </div>
+  <div id="route-legs"></div>
+</div>
+
+
+<input type="file" id="fileInput" accept=".txt" style="display:none" onchange="handleFileImport(event)" />
+
+</body>
+</html>
