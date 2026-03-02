@@ -16,6 +16,9 @@ build:
 preview:
 	$(VITE) preview
 
+deploy:
+	$(NPM) run deploy
+
 clean:
 	rm -rf node_modules
 	rm -rf dist

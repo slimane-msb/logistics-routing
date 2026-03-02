@@ -1,4 +1,3 @@
-import { Point, Node} from "./types";
 import type { Point, Node } from "./types";
 
 // haversine : Helper function 
