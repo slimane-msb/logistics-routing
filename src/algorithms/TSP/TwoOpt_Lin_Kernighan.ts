@@ -1,5 +1,5 @@
 
-import { Graph, Node, TSPResult } from "../../utils/types";
+import type { Graph, Node, TSPResult } from "../../utils/types";
 import { shortestPath } from "../shortest path/chosen_algo"; 
 
 /**

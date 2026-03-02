@@ -1,4 +1,4 @@
-import { Graph, TSPResult } from "../../utils/types";
+import type { Graph, TSPResult } from "../../utils/types";
 import { linKernighanTSP } from "./lin_kernighan_heuristic";
 import { heldKarpTSP } from "./held_karp";
 import {astar } from "../shortest path/astar"

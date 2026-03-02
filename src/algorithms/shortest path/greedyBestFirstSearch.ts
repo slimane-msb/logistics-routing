@@ -1,5 +1,5 @@
 import Heap from "heap";
-import { Graph, Node} from "@/utils/types";
+import type { Graph, Node} from "@/utils/types";
 import { getDistance } from "../../utils/distance";
 
 function greedyBestFirstSearch(

@@ -1,4 +1,5 @@
 import { Point, Node} from "./types";
+import type { Point, Node } from "./types";
 
 // haversine : Helper function 
 function getDistance(point1: Point, point2: Point): number {

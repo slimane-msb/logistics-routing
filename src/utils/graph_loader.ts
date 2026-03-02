@@ -1,5 +1,4 @@
-import { Edge, Graph, Node } from './types';
-
+import type { Edge, Graph, Node } from "./types";
 function processGraphData(
   nodesRaw: { id: number; lat: number; lng: number }[],
   edgesRaw: { from_node_id: number; to_node_id: number; distance: number }[],

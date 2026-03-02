@@ -1,4 +1,4 @@
-import { Graph, TSPResult} from "../../utils/types";
+import type { Graph, TSPResult} from "../../utils/types";
 
 
 /**

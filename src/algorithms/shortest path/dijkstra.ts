@@ -1,4 +1,4 @@
-import { Edge, Graph, Node } from "@/utils/types";
+import type { Edge, Graph, Node } from "@/utils/types";
 import Heap from "heap"; 
 
 

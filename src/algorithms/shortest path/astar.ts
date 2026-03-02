@@ -1,5 +1,5 @@
 import Heap from "heap";
-import { Graph } from "../../utils/types";
+import type { Graph } from "../../utils/types";
 import { getDistance } from "../../utils/distance";
 
 function astar(
