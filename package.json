@@ -1,26 +1,20 @@
 {
-  "name": "logistics-routing",
-  "version": "1.0.0",
-  "description": "Route Optimization — Real-Time Multi-Address Routing on Road Networks",
+  "name": "tmp",
+  "private": true,
+  "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "test": "vitest",
-    "build": "vite build",
-    "deploy": "npm run build && gh-pages -d assets/js"
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
   },
   "devDependencies": {
-    "@types/heap": "^0.2.35",
     "@types/leaflet": "^1.9.21",
-    "@types/node": "^25.2.2",
-    "esbuild": "^0.27.3",
-    "gh-pages": "^6.1.0",
-    "rollup": "^4.57.1",
-    "rollup-plugin-typescript2": "^0.36.0",
-    "typescript": "^5.2.2",
-    "vitest": "^4.0.18"
+    "typescript": "~5.9.3",
+    "vite": "^7.3.1"
   },
   "dependencies": {
-    "heap": "^0.2.7",
-    "leaflet": "^1.9.4"
+    "leaflet": "^1.9.4",
+    "leaflet-routing-machine": "^3.2.12"
   }
 }
