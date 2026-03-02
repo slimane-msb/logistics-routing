@@ -107,7 +107,7 @@ async function addFromInput() {
   if (!val) return;
   setStatus('Geocoding…', 'loading');
   const coords = await geocode(val);
-  if (!coords) { setStatus('Address not found.', 'error'); return; }
+  if (!coords) { setStatus('Address not found, Please use the format: Number, Street, City.', 'error'); return; }
   addresses.push({ label: val, latlng: coords });
   input.value = '';
   renderList();

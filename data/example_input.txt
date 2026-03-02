@@ -1,3 +1,29 @@
-Eiffel Tower, Paris
-Louvre Museum, Paris
-Notre-Dame, Paris
+Avenue Gustave Eiffel, 75007 Paris, France
+9 Place des Vosges, 75004 Paris, France
+80 Rue de Charonne, 75011 Paris, France
+228 Rue de Rivoli, 75001 Paris, France
+112 Rue du Faubourg Saint-Honoré, 75008 Paris, France
+31 Avenue George V, 75008 Paris, France
+6 Rue Balzac, 75008 Paris, France
+11 Quai de Conti, 75006 Paris, France
+84 Rue de Varenne, 75007 Paris, France
+17 Rue de Beaujolais, 75001 Paris, France
+18 Rue Paul Bert, 75011 Paris, France
+102 Boulevard du Montparnasse, 75014 Paris, France
+7 Rue du Faubourg Montmartre, 75009 Paris, France
+172 Boulevard Saint-Germain, 75006 Paris, France
+6 Place Saint-Germain des Prés, 75006 Paris, France
+Place Louis-Armand, 75012 Paris, France
+27 Rue Malar, 75007 Paris, France
+13 Rue de l’Ancienne Comédie, 75006 Paris, France
+15 Rue Marbeuf, 75008 Paris, France
+20bis Rue de Douai, 75009 Paris, France
+129 Rue Saint-Dominique, 75007 Paris, France
+9 Carrefour de l’Odéon, 75006 Paris, France
+Allée de Longchamp, Bois de Boulogne, 75016 Paris, France
+8 Rue de la Chancellerie, 78000 Versailles, France
+33 Route de Versailles, 78960 Voisins-le-Bretonneux, France
+5 Place du Général de Gaulle, 77300 Fontainebleau, France
+21 Rue Carnot, 78000 Versailles, France
+15 Avenue Montaigne, 75008 Paris, France
+
