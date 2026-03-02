@@ -1,39 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Paris Route Optimizer</title>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-    <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.css" />
-    <style>
-        body { margin: 0; display: flex; height: 100vh; font-family: sans-serif; }
-        #sidebar { width: 300px; padding: 15px; background: #f8f9fa; border-right: 1px solid #ddd; overflow-y: auto; }
-        #map { flex-grow: 1; }
-        .address-row { display: flex; margin-bottom: 8px; gap: 5px; }
-        input { flex-grow: 1; padding: 5px; }
-        .btn { width: 100%; padding: 10px; cursor: pointer; background: #2A81CB; color: white; border: none; border-radius: 4px; margin-top: 10px; }
-        .add-btn { background: #28a745; margin-bottom: 15px; }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LogiRoute</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.css" />
+  <link rel="stylesheet" href="./public/style.css" />
 </head>
 <body>
-    <div id="sidebar">
-        <h3>Route Planner</h3>
-        <div id="address-list">
-            <div class="address-row"><input type="text" placeholder="Enter address..."></div>
-        </div>
-        
-        <button class="btn add-btn" onclick="addAddressRow()">+ Add Address</button>
-        
-        <button class="btn" style="background: #6c757d;" onclick="document.getElementById('fileInput').click()">
-            Import from .txt
-        </button>
-        <input type="file" id="fileInput" id="fileInput" accept=".txt" style="display:none" onchange="handleFileImport(event)">
-    
-        <button class="btn" style="background: #dc3545;" onclick="clearAll()">Clear All</button>
-        <button class="btn" onclick="optimizeRoute()">Optimize & Draw</button>
+
+<div id="sidebar">
+  <div id="sidebar-header">
+    <h1><span class="icon">🗺</span> LogiRoute</h1>
+    <p class="subtitle">Click the map or add addresses to get started</p>
+  </div>
+
+  <div id="address-list-wrapper">
+    <div id="address-list"></div>
+
+    <div id="add-row">
+      <input id="new-address-input" type="text" placeholder="Type an address and press ↵" />
+      <button id="add-addr-btn" onclick="addAddressFromInput()" title="Add address">+</button>
     </div>
-    <div id="map"></div>
-    <script type="module" src="/src/main.ts"></script>
+  </div>
+
+  <div id="sidebar-actions">
+    <div class="action-row">
+        <button class="btn btn-ghost" 
+            onclick="document.getElementById('fileInput').click()"
+            title="import from file (one address per line).">
+          ↑ Import .txt
+        </button>
+      <button class="btn btn-danger" onclick="clearAll()">
+        ✕ Clear
+      </button>
+    </div>
+    <button id="optimize-btn" class="btn btn-primary" onclick="optimizeRoute()">
+      Find Best Route & Order
+    </button>
+  </div>
+
+  <div id="status"></div>
+</div>
+
+<div id="map"></div>
+
+<input type="file" id="fileInput" accept=".txt" style="display:none" onchange="handleFileImport(event)" />
+
+<script type="module" src="/src/main.ts"></script>
 </body>
 </html>
