@@ -199,8 +199,82 @@ function tspNearestNeighbor(items: Address[]): Address[] {
   }).addTo(map);
 
   setStatus(`Route optimized — ${ordered.length} stops.`, 'success');
+  buildRoutePanel(ordered);
   btn.disabled = false;
 };
+
+// ── Google Maps URL builders ──────────────────────────────────────────────
+function mapsLegUrl(from: Address, to: Address): string {
+    const origin = encodeURIComponent(`${from.latlng.lat},${from.latlng.lng}`);
+    const destination = encodeURIComponent(`${to.latlng.lat},${to.latlng.lng}`);
+    return `https://www.google.com/maps/dir/?api=1&origin=${origin}&destination=${destination}&travelmode=driving`;
+  }
+  
+function mapsFullUrl(ordered: Address[]): string {
+    const origin = encodeURIComponent(`${ordered[0].latlng.lat},${ordered[0].latlng.lng}`);
+    const destination = encodeURIComponent(`${ordered[ordered.length - 1].latlng.lat},${ordered[ordered.length - 1].latlng.lng}`);
+    const waypoints = ordered.slice(1, -1)
+        .map(a => `${a.latlng.lat},${a.latlng.lng}`)
+        .join('|');
+    const encodedWaypoints = encodeURIComponent(waypoints);
+
+    return `https://www.google.com/maps/dir/?api=1&origin=${origin}&destination=${destination}&waypoints=${encodedWaypoints}&travelmode=driving`;
+}
+
+
+// ── Route panel ───────────────────────────────────────────────────────────
+function buildRoutePanel(ordered: Address[]) {
+    const panel = document.getElementById('route-panel')!;
+    document.getElementById('route-stop-count')!.textContent = `${ordered.length} stops`;
+  
+    // 1. Full route button - Open directly in new tab
+    document.getElementById('full-route-btn')!.onclick = () => {
+      window.open(mapsFullUrl(ordered), '_blank');
+    };
+  
+    // 2. Build legs
+    const legsEl = document.getElementById('route-legs')!;
+    legsEl.innerHTML = '';
+  
+    ordered.forEach((addr, i) => {
+      // Add the Stop Row
+      const stop = document.createElement('div');
+      stop.className = 'leg-stop';
+      stop.innerHTML = `
+        <div class="leg-stop-dot${i === ordered.length - 1 ? ' last' : ''}">${i + 1}</div>
+        <div class="leg-stop-label">${escHtml(addr.label)}</div>
+      `;
+      legsEl.appendChild(stop);
+  
+      // Add the Connector and Navigation Button (if not the last stop)
+      if (i < ordered.length - 1) {
+        const conn = document.createElement('div');
+        conn.className = 'leg-connector';
+        
+        // Calculate URL for this specific leg
+        const legUrl = mapsLegUrl(addr, ordered[i + 1]);
+  
+        conn.innerHTML = `
+          <div class="leg-connector-line"></div>
+          <button class="leg-nav-btn" title="Open in Google Maps">
+            <span class="nav-label">Navigate this leg</span>
+            <span class="nav-arrow">→ Maps</span>
+          </button>
+        `;
+  
+        // Open directly in a new tab on click
+        conn.querySelector('.leg-nav-btn')!.addEventListener('click', () => {
+          window.open(legUrl, '_blank');
+        });
+  
+        legsEl.appendChild(conn);
+      }
+    });
+  
+    panel.classList.remove('hidden');
+  }
+
+(window as any).closeRoutePanel = () => document.getElementById('route-panel')!.classList.add('hidden');
 
 // ── Clear all ─────────────────────────────────────────────────────────────
 (window as any).clearAll = (): void => {
@@ -209,6 +283,7 @@ function tspNearestNeighbor(items: Address[]): Address[] {
   markers = [];
   if (routeControl) { map.removeControl(routeControl); routeControl = null; }
   renderList();
+  document.getElementById('route-panel')!.classList.add('hidden');
   setStatus('Cleared.', 'idle');
 };
 
